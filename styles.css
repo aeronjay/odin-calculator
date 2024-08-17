@@ -20,10 +20,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     
  }
+ .title{
+    color: white;
+ }
  .calculator{
-    background-color: rgb(221, 221, 221);
+    background-color: #202020;
     flex-shrink: 0;
     width: 400px;
     height: 600px;
@@ -31,26 +35,32 @@
     padding: 10px;
     display: flex;
     flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border: 5px solid whitesmoke;
  }
 .footer{
     height: 5%;
     width: 100%;
     text-align: center;
     align-content: center;
+    background-color: rgb(102, 102, 102);
+    color: white;
 }
 .upper{
-    background-color: aqua;
+    background-color: #202020;
     flex: 1;
     padding: 10px;
 }
 .lower{
-    background-color: rebeccapurple;
+    background-color: #323232;
     flex: 2;
+    border-radius: 20px;
+    margin: 15px;
 }
 .display{
-    background-color: red;
     width: 100%;
     height: 100%;
+    
     
     display: flex;
     flex-flow: column nowrap;
@@ -60,25 +70,46 @@
     text-align: right;
     font-size: 28px;
     padding: 5px;
-    background-color: rgb(138, 138, 0);
+    background-color: #323232;
+    border-radius: 10px;
+    color: white;
+    margin-top: 5px;
     
 }
 .main-display{
-    flex: 2;
+    flex: 3.5;
     text-align: right;
     font-size: 75px;
-    background-color: yellow;
+    background-color: #202020;
+    color: white;
+    align-content: center;
 }
 .keys-wrapper{
     display: flex;
     flex-flow: row wrap;
     gap: 10px;
-    padding: 10px;
+    padding: 15px;
+    flex: 1;
     height: 100%;
-    width: 100%;
+    
 
 }
 .key{
     flex: 1 1 20%;
     height: auto;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    cursor: pointer;
+}
+.key:hover{
+    background-color: #b6b6b6;
+}
+button.key-option{
+    background-color: #787878;
+}
+button.key-num{
+    background-color: #505050;
 }
