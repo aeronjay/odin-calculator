@@ -1,10 +1,13 @@
 
 let mainDisplay = document.querySelector(".main-display");
 let miniDisplay = document.querySelector(".mini-display");
-
+let operators = document.querySelectorAll(".operator-btn");
+let deleteButton = document.querySelector(".delete-btn");
 let keyNum = document.querySelectorAll(".key-num");
 
 let defaultZero = true;
+let hasOperator = false;
+let operand1 = ["", ""], operand2;
 
 keyNum.forEach((key) => {
     key.addEventListener("click", (e) => {
@@ -19,3 +22,23 @@ keyNum.forEach((key) => {
         }
     })
 })
+operators.forEach((operator) => {
+    operator.addEventListener("click", (e) => {
+        let currentOperation = e.target.textContent;
+        if(operand1[1] === ""){
+            operand1[0] = mainDisplay.textContent;
+            operand1[1] = currentOperation;
+            miniDisplay.textContent = operand1.join("");
+            mainDisplay.textContent = "0";
+            defaultZero = true;
+        }else if(mainDisplay.textContent === "0" && defaultZero){
+            operand1[1] = currentOperation;
+            miniDisplay.textContent = operand1.join("");
+        }else{
+
+        }
+        
+    })
+})
+
+
