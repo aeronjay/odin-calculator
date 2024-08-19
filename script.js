@@ -4,7 +4,7 @@ let miniDisplay = document.querySelector(".mini-display");
 let operators = document.querySelectorAll(".operator-btn");
 let deleteButton = document.querySelector(".delete-btn");
 let keyNum = document.querySelectorAll(".key-num");
-let equate = document.querySelector("equals-operator");
+let equate = document.querySelector(".equals-operator");
 
 let defaultZero = true;
 let hasOperator = false;
@@ -21,6 +21,7 @@ keyNum.forEach((key) => {
             }
         }else{
             mainDisplay.textContent += key.textContent;
+            
         }
     })
 })
@@ -28,6 +29,7 @@ operators.forEach((operator) => {
     operator.addEventListener("click", (e) => {
         let currentOperation = e.target.textContent;
         if(operand1[1] === ""){
+            operand2 = mainDisplay.textContent;
             operand1[0] = mainDisplay.textContent;
             operand1[1] = currentOperation;
             miniDisplay.textContent = operand1.join("");
@@ -57,15 +59,23 @@ function Calculator() {
         "/":(a,b) => (parseFloat(a) / parseFloat(b)),
     }
     this.calculate = (operand1, operator, operand2) => {
-        console.log(operand1, operator, operand2)
+        console.log(`${operand2} ${operator} ${operand1}`)
         if(!this.methods[operator] || isNaN(parseFloat(operand1)) || isNaN(operand2)){
             return "ERROR";
         }
-        return this.methods[operator](operand1, operand2);
+        return this.methods[operator](operand2, operand1);
     }
     this.addMethod = (name, callback) => {
         this.methods[name] = callback;
     }
 }
+equate.addEventListener("click", (e) => {
+    operand1[0] = mainDisplay.textContent;
+    
+    mainDisplay.textContent = calcu.calculate(operand1[0], operand1[1], operand2);
+    miniDisplay.textContent = "";
+    currentOperation = "";
+    operand1[1] = "";
+})
 
 
