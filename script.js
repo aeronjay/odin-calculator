@@ -21,7 +21,6 @@ keyNum.forEach((key) => {
             }
         }else{
             mainDisplay.textContent += key.textContent;
-            
         }
     })
 })
@@ -29,7 +28,6 @@ operators.forEach((operator) => {
     operator.addEventListener("click", (e) => {
         let currentOperation = e.target.textContent;
         if(operand1[1] === ""){
-            
             operand1[0] = mainDisplay.textContent;
             operand1[1] = currentOperation;
             miniDisplay.textContent = operand1.join("");
@@ -71,7 +69,6 @@ function Calculator() {
 }
 equate.addEventListener("click", (e) => {
     operand2 = mainDisplay.textContent;
-    
     mainDisplay.textContent = calcu.calculate(operand1[0], operand1[1], operand2);
     miniDisplay.textContent = "";
     currentOperation = "";
