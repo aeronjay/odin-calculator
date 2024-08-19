@@ -40,7 +40,7 @@ operators.forEach((operator) => {
             miniDisplay.textContent = operand1.join("");
         }else{
             operand2 = mainDisplay.textContent;
-            let result = calcu.calculate(operand1[0], operand1[1], operand2);
+            let result = calcu.calculate(operand2, operand1[1], operand1[0]);
             miniDisplay.textContent = result;
             operand1[0] = result;
             operand1[1] = e.target.textContent;
