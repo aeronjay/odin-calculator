@@ -29,11 +29,12 @@ operators.forEach((operator) => {
     operator.addEventListener("click", (e) => {
         let currentOperation = e.target.textContent;
         if(operand1[1] === ""){
-            operand2 = mainDisplay.textContent;
+            
             operand1[0] = mainDisplay.textContent;
             operand1[1] = currentOperation;
             miniDisplay.textContent = operand1.join("");
             mainDisplay.textContent = "0";
+            operand2 = "0";
             defaultZero = true;
         }else if(mainDisplay.textContent === "0" && defaultZero){
             operand1[1] = currentOperation;
@@ -41,7 +42,6 @@ operators.forEach((operator) => {
         }else{
             operand2 = mainDisplay.textContent;
             let result = calcu.calculate(operand2, operand1[1], operand1[0]);
-            miniDisplay.textContent = result;
             operand1[0] = result;
             operand1[1] = e.target.textContent;
             miniDisplay.textContent = operand1.join("");
@@ -70,7 +70,7 @@ function Calculator() {
     }
 }
 equate.addEventListener("click", (e) => {
-    operand1[0] = mainDisplay.textContent;
+    operand2 = mainDisplay.textContent;
     
     mainDisplay.textContent = calcu.calculate(operand1[0], operand1[1], operand2);
     miniDisplay.textContent = "";
