@@ -69,7 +69,7 @@ function Calculator() {
 }
 equate.addEventListener("click", (e) => {
     operand2 = mainDisplay.textContent;
-    mainDisplay.textContent = calcu.calculate(operand1[0], operand1[1], operand2);
+    mainDisplay.textContent = calcu.calculate(operand2, operand1[1], operand1[0]);
     miniDisplay.textContent = "";
     currentOperation = "";
     operand1[1] = "";
