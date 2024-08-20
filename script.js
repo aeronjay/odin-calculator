@@ -6,11 +6,14 @@ let deleteButton = document.querySelector(".delete-btn");
 let keyNum = document.querySelectorAll(".key-num");
 let equate = document.querySelector(".equals-operator");
 let clear = document.querySelectorAll(".clear");
+let posneg = document.querySelector(".posneg");
+let special = document.querySelectorAll(".special");
 
 let defaultZero = true;
 let hasOperator = false;
 let operand1 = ["", ""], operand2;
 let calcu = new Calculator;
+let mainPositive = true;
 
 mainDisplay.textContent = "0";
 miniDisplay.textContent = "";
@@ -68,6 +71,7 @@ function Calculator() {
         "-":(a,b) => (parseFloat(a) - parseFloat(b)),
         "*":(a,b) => (parseFloat(a) * parseFloat(b)),
         "/":(a,b) => (parseFloat(a) / parseFloat(b)),
+
     }
     this.calculate = (operand1, operator, operand2) => {
         console.log(`${operand2} ${operator} ${operand1}`)
@@ -80,7 +84,9 @@ function Calculator() {
         this.methods[name] = callback;
     }
 }
+
 equate.addEventListener("click", (e) => {
+    
     operand2 = mainDisplay.textContent;
     mainDisplay.textContent = calcu.calculate(operand2, operand1[1], operand1[0]);
     miniDisplay.textContent = "";
@@ -116,4 +122,27 @@ clear.forEach((element) => {
             hasOperator = false;
         }
     })
+})
+posneg.addEventListener("click", (e) => {
+    if(mainPositive){
+        mainPositive = false;
+        mainDisplay.textContent = "-" + mainDisplay.textContent;
+    }else{
+        mainPositive = true;
+        mainDisplay.textContent = mainDisplay.textContent.slice(1);
+    }
+});
+
+special.forEach((e) => {
+    e.addEventListener("click" ,(btn) => {
+        console.log(e.textContent)
+        if(e.textContent === "1/x"){
+            mainDisplay.textContent = 1 / parseFloat(mainDisplay.textContent);
+        }else if(e.textContent === "x^2"){
+            mainDisplay.textContent = parseFloat(mainDisplay.textContent) * parseFloat(mainDisplay.textContent);
+        }else{
+            mainDisplay.textContent = Math.sqrt(mainDisplay.textContent);
+        }
+    })
+    
 })
