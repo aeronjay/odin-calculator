@@ -11,6 +11,9 @@ let hasOperator = false;
 let operand1 = ["", ""], operand2;
 let calcu = new Calculator;
 
+mainDisplay.textContent = "0";
+miniDisplay.textContent = "";
+
 keyNum.forEach((key) => {
     key.addEventListener("click", (e) => {
         if(defaultZero){
@@ -20,7 +23,14 @@ keyNum.forEach((key) => {
                 defaultZero = false;
             }
         }else{
-            mainDisplay.textContent += key.textContent;
+            if(e.target.textContent === "."){
+                if(!(mainDisplay.textContent.includes("."))){
+                    mainDisplay.textContent += key.textContent;
+                }
+            }else{
+                mainDisplay.textContent += key.textContent;
+            }
+            
         }
     })
 })
@@ -33,6 +43,7 @@ operators.forEach((operator) => {
             miniDisplay.textContent = operand1.join("");
             mainDisplay.textContent = "0";
             operand2 = "0";
+            hasOperator = true;
             defaultZero = true;
         }else if(mainDisplay.textContent === "0" && defaultZero){
             operand1[1] = currentOperation;
@@ -45,6 +56,7 @@ operators.forEach((operator) => {
             miniDisplay.textContent = operand1.join("");
             mainDisplay.textContent = "0";
             defaultZero = true;
+            hasOperator = true;
         }
         
     })
@@ -75,4 +87,16 @@ equate.addEventListener("click", (e) => {
     operand1[1] = "";
 })
 
-
+deleteButton.addEventListener("click", (e) => {
+    if(mainDisplay.textContent.length > 0){
+        mainDisplay.textContent = mainDisplay.textContent.slice(0, -1);
+    }else if(hasOperator && miniDisplay.textContent !== "" && mainDisplay.textContent === ""){
+        mainDisplay.textContent = miniDisplay.textContent.slice(0, -1);
+        currentOperation = "";
+        miniDisplay.textContent = "";
+        hasOperator = false;
+        operand2 = "";
+        operand1 = ["", ""];
+    }
+    
+})
