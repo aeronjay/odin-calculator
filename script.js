@@ -5,6 +5,7 @@ let operators = document.querySelectorAll(".operator-btn");
 let deleteButton = document.querySelector(".delete-btn");
 let keyNum = document.querySelectorAll(".key-num");
 let equate = document.querySelector(".equals-operator");
+let clear = document.querySelectorAll(".clear");
 
 let defaultZero = true;
 let hasOperator = false;
@@ -99,4 +100,20 @@ deleteButton.addEventListener("click", (e) => {
         operand1 = ["", ""];
     }
     
+})
+clear.forEach((element) => {
+    element.addEventListener("click", (e) =>{
+        if(element.textContent === "C"){
+            mainDisplay.textContent = "";
+            operand2 = "";
+        }else{
+            defaultZero = true;
+            miniDisplay.textContent = "";
+            mainDisplay.textContent = "0";
+            currentOperation = "";
+            operand2 = "";
+            operand1 = ["", ""];
+            hasOperator = false;
+        }
+    })
 })
