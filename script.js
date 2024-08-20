@@ -70,7 +70,7 @@ function Calculator() {
         "+":(a,b) => (parseFloat(a) + parseFloat(b)),
         "-":(a,b) => (parseFloat(a) - parseFloat(b)),
         "*":(a,b) => (parseFloat(a) * parseFloat(b)),
-        "/":(a,b) => (parseFloat(a) / parseFloat(b)),
+        "/":(a,b) => b === "0" || b === 0 ? "BRUH" : (parseFloat(a) / parseFloat(b)),
 
     }
     this.calculate = (operand1, operator, operand2) => {
@@ -86,12 +86,14 @@ function Calculator() {
 }
 
 equate.addEventListener("click", (e) => {
+    if(miniDisplay.textContent !== "" && hasOperator && mainDisplay.textContent !== ""){
+        operand2 = mainDisplay.textContent;
+        mainDisplay.textContent = calcu.calculate(operand2, operand1[1], operand1[0]);
+        miniDisplay.textContent = "";
+        currentOperation = "";
+        operand1[1] = "";
+    }
     
-    operand2 = mainDisplay.textContent;
-    mainDisplay.textContent = calcu.calculate(operand2, operand1[1], operand1[0]);
-    miniDisplay.textContent = "";
-    currentOperation = "";
-    operand1[1] = "";
 })
 
 deleteButton.addEventListener("click", (e) => {
